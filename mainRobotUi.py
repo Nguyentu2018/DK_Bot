@@ -7,7 +7,7 @@ import g2
 import Stt
 import json
 import R
-
+print('update to github')
 class MyThread(QThread):
     # bien data
     data = pyqtSignal(str)
