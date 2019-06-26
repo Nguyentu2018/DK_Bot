@@ -1,3 +1,4 @@
+import math
 from math import sin,cos,atan2,pi
 import numpy as np
 
@@ -29,8 +30,9 @@ def fkine2(joint, unit='deg'):
                  [ny, oy, ay, ty],
                  [nz, oz, az, tz],
                  [0, 0, 0, 1]])
-    # print(T)
-    return T
+    limit = checkLimit(joint, 'joint')
+
+    return T, limit
 
 
 def fkine(joint, unit='deg'):
@@ -46,12 +48,13 @@ def fkine(joint, unit='deg'):
     return x, y, z
 
 
-def ikine(position, otp, q4):
+def ikine(position, otp):
     tx = position[0]
     ty = position[1]
     tz = position[2]
+    roll = position[3]
     j = np.array([0, 0, 0, 0], float)
-
+    limit = checkLimit(position, 'carter')
     if otp[0] == 1:
         j[0] = atan2(- tx ** 2 - ty ** 2,
                      (-(- tx ** 4 - 2 * tx ** 2 * ty ** 2 + 490000 * tx ** 2 - ty ** 4 + 490000 * ty ** 2) ** 0.5).real) - atan2(-tx, -ty)
@@ -66,28 +69,40 @@ def ikine(position, otp, q4):
         j[1] = - atan2(c1*tx + s1*ty - 350, c1*ty - s1*tx) + atan2(350, (-(tx**2 - 700*c1*tx + ty**2 - 700*s1*ty)**0.5).real)
     else:
         j[1] = - atan2(c1*tx + s1*ty - 350, c1*ty - s1*tx) + atan2(350, ((tx**2 - 700*c1*tx + ty**2 - 700*s1*ty)**0.5).real)
-    c2 = cos(j[1])
-    s2 = sin(j[1])
 
     j[2] = -tz * pi/180
 
-    ax = (4967757600021511 * sin(j[0] + j[1])) / 40564819207303340847894502572032
-    ay = -(4967757600021511 * cos(j[0] + j[1])) / 40564819207303340847894502572032
-    if otp[2] == 1:
-        j[3] = np.angle(-(c1 + s1*1j)*(c2 + s2*1j)*(ay + ax*1j))
-        j[3] = j[3] + q4 * pi / 180
-    else:
-        j[3] = np.angle((c1 + s1*1j)*(c2 + s2*1j)*(ay + ax*1j))
-        j[3] = j[3] + q4 * pi / 180
-    if j[3] > pi or j[3] < -pi:
-        j[3] = 2*pi + j[3]
-    j = j*180/pi
-    print(j)
+    j[3] = j[0] + j[1] + roll * pi/180
 
-# j = [90, 90, 50, -45]
-# # t1 = time.time()
-# fkine2([0, 0, 0, 0])
-# # x, y, z = fkine(j)
-# ikine([350, 350, -50],[1,0,1],0)
-# # print(time.time()-t1)
-# #
+    j = j * 180 / pi
+
+    if  limit == False:
+        limit = checkLimit(j,'joint')
+    return j, limit
+
+def checkLimit(value, type):
+    min = np.array([-90, -135, 0, -180], float)
+    max = np.array([90, 135, 230, 180], float)
+
+    if type == 'joint':
+        j = value
+        for i in range(0, 4):
+            if j[i] >= min[i] and j[i] <= max[i]:
+                if i == 3:
+                    limit = False
+                    return limit
+            else:
+                print('j[' + str(i) + '] is limit')
+                limit = True
+                return limit
+                break
+
+    if type == 'carter':
+        tx = value[0]
+        ty = value[1]
+        if tx + ty > 700:
+            limit = True
+            return  limit
+        else:
+            limit = False
+            return limit
