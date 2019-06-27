@@ -30,9 +30,7 @@ def fkine2(joint, unit='deg'):
                  [ny, oy, ay, ty],
                  [nz, oz, az, tz],
                  [0, 0, 0, 1]])
-    limit = checkLimit(joint, 'joint')
-
-    return T, limit
+    return T
 
 
 def fkine(joint, unit='deg'):
@@ -44,8 +42,8 @@ def fkine(joint, unit='deg'):
     x = 350*cos(j[0] + j[1]) + 350*cos(j[0]) + (4967757600021511*j[2]*sin(j[0] + j[1]))/40564819207303340847894502572032
     y = 350*sin(j[0] + j[1]) + 350*sin(j[0]) - (4967757600021511*j[2]*cos(j[0] + j[1]))/40564819207303340847894502572032
     z = -j[2]
-    # print(x, y, z)
-    return x, y, z
+    pos = np.array([x, y, z],float)
+    return pos
 
 
 def ikine(position, otp):
@@ -54,7 +52,7 @@ def ikine(position, otp):
     tz = position[2]
     roll = position[3]
     j = np.array([0, 0, 0, 0], float)
-    limit = checkLimit(position, 'carter')
+
     if otp[0] == 1:
         j[0] = atan2(- tx ** 2 - ty ** 2,
                      (-(- tx ** 4 - 2 * tx ** 2 * ty ** 2 + 490000 * tx ** 2 - ty ** 4 + 490000 * ty ** 2) ** 0.5).real) - atan2(-tx, -ty)
@@ -76,33 +74,30 @@ def ikine(position, otp):
 
     j = j * 180 / pi
 
-    if  limit == False:
-        limit = checkLimit(j,'joint')
+    limit = checkLimit(j, position)
     return j, limit
 
-def checkLimit(value, type):
+def checkLimit(joint, position):
     min = np.array([-90, -135, 0, -180], float)
     max = np.array([90, 135, 230, 180], float)
-
-    if type == 'joint':
-        j = value
-        for i in range(0, 4):
-            if j[i] >= min[i] and j[i] <= max[i]:
-                if i == 3:
-                    limit = False
-                    return limit
-            else:
-                print('j[' + str(i) + '] is limit')
-                limit = True
-                return limit
-                break
-
-    if type == 'carter':
-        tx = value[0]
-        ty = value[1]
-        if tx + ty > 700:
-            limit = True
-            return  limit
+    j = joint
+    posOld = np.array([position[0], position[1], position[2]], float)
+    for i in range(0, 4):
+        if j[i] >= min[i] and j[i] <= max[i]:
+            if i == 3:
+                limit = False
         else:
-            limit = False
-            return limit
+            print('j[' + str(i) + '] is limit')
+            limit = True
+            break
+    posNew = fkine(j)
+
+    c = abs(posOld-posNew)
+    lm = 0
+    for i in range(0,3):
+        if c[i]>1:
+            lm = lm+1
+        if lm>1:
+            limit = True
+            print('limit Carter ' + str(i))
+    return limit

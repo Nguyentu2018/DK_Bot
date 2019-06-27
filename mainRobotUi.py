@@ -21,8 +21,10 @@ class MyThread(QThread):
             g2.open()
             w.lb_stt_com.setText(g2.s.port + " connect OK")
             g2.send('$sv=2')
+            time.sleep(0.5)
+            g2.send('$ej=1')
             g2.send('g54')
-            time.sleep(1)
+            time.sleep(0.5)
             g2.send('$sv=1')
             g2.send('$si=100')
         except:
@@ -109,7 +111,7 @@ class window(QtWidgets.QMainWindow):
 
         j, limit = R.ikine([px, py, pz, roll], otp)
 
-        if limit:
+        if limit and self.cb_ApplyLimit.isChecked():
             buttonReply = QMessageBox.question(self, 'PyQt5 message', "Joint is limit!",
                                                QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
             if buttonReply == QMessageBox.Yes:
@@ -270,7 +272,7 @@ class window(QtWidgets.QMainWindow):
             z = float(self.lb_z.text())
             u = float(self.lb_u.text())
             j = [x, y, z, u]
-            T,_ = R.fkine2(j)
+            T = R.fkine2(j)
             self.T = T
             rpy = tr2rpy(T, 'deg', 'xyz')
             self.lb_px.setText(str(round(T[0,3], 5)))
