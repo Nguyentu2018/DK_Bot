@@ -27,6 +27,11 @@ class MyThread(QThread):
             time.sleep(0.5)
             g2.send('$sv=1')
             g2.send('$si=100')
+
+            w.gb_Joint.setEnabled(True)
+            w.gb_Carter.setEnabled(True)
+            w.gb_Setting.setEnabled(True)
+
         except:
             error = g2.s.port + " connect ERROR"
             w.lb_stt_com.setText(error)
@@ -68,6 +73,16 @@ class window(QtWidgets.QMainWindow):
         self.btn_U2.clicked.connect(self.btnU2)
         self.rb_Left.clicked.connect(self.btnLeftArm)
         self.rb_Right.clicked.connect(self.btnRightArm)
+        self.cb_ServoON.clicked.connect(self.btnServoON)
+        self.cb_Output1.clicked.connect(self.btnOutput1)
+        self.cb_Output2.clicked.connect(self.btnOutput2)
+        self.cb_Output3.clicked.connect(self.btnOutput3)
+        self.cb_Output4.clicked.connect(self.btnOutput4)
+        self.cb_Output5.clicked.connect(self.btnOutput5)
+        self.cb_Output6.clicked.connect(self.btnOutput6)
+        self.cb_Output7.clicked.connect(self.btnOutput7)
+        self.cb_Output8.clicked.connect(self.btnOutput8)
+        self.cb_Output9.clicked.connect(self.btnOutput9)
 
         self.btn_PX1.clicked.connect(self.btnPX1)
         self.btn_PX2.clicked.connect(self.btnPX2)
@@ -84,6 +99,57 @@ class window(QtWidgets.QMainWindow):
         self.btn_Connectg2.clicked.connect(self.btnConnectg2)
         self.show()
 
+    def btnOutput1(self):
+        if self.cb_Output1.isChecked():
+            g2.send('$out1=1')
+        else:
+            g2.send('$out1=0')
+    def btnOutput2(self):
+        if self.cb_Output2.isChecked():
+            g2.send('$out2=1')
+        else:
+            g2.send('$out2=0')
+    def btnOutput3(self):
+        if self.cb_Output3.isChecked():
+            g2.send('$out3=1')
+        else:
+            g2.send('$out3=0')
+    def btnOutput4(self):
+        if self.cb_Output4.isChecked():
+            g2.send('$out4=1')
+        else:
+            g2.send('$out4=0')
+
+    def btnOutput5(self):
+        if self.cb_Output5.isChecked():
+            g2.send('$out5=1')
+        else:
+            g2.send('$out5=0')
+    def btnOutput6(self):
+        if self.cb_Output6.isChecked():
+            g2.send('$out6=1')
+        else:
+            g2.send('$out6=0')
+    def btnOutput7(self):
+        if self.cb_Output7.isChecked():
+            g2.send('$out7=1')
+        else:
+            g2.send('$out7=0')
+    def btnOutput8(self):
+        if self.cb_Output8.isChecked():
+            g2.send('$out8=1')
+        else:
+            g2.send('$out8=0')
+    def btnOutput9(self):
+        if self.cb_Output9.isChecked():
+            g2.send('$out9=1')
+        else:
+            g2.send('$out9=0')
+    def btnServoON(self):
+        if self.cb_ServoON.isChecked():
+            g2.send('$out1=1')
+        else:
+            g2.send('$out1=0')
     def btnLeftArm(self):
         self.P_program('none')
     def btnRightArm(self):
@@ -225,7 +291,7 @@ class window(QtWidgets.QMainWindow):
     def setStatus(self, c):
         data = json.loads(c)
         # chi hien thi khi o tab MDI
-        if self.tabWidget.currentIndex() == 2:
+        if self.tabWidget_1.currentIndex() == 2:
             self.datahienthi = self.datahienthi + c
             self.textEdit_MDI.setText(self.datahienthi)
         # lay ra ten cua cac lop trong data
