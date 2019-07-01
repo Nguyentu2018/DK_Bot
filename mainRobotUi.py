@@ -21,17 +21,13 @@ class MyThread(QThread):
             g2.open()
             w.lb_stt_com.setText(g2.s.port + " connect OK")
             g2.send('$sv=2')
-            time.sleep(0.5)
             g2.send('$ej=1')
+            g2.send('g54')
+            g2.send('g54')
             g2.send('g54')
             time.sleep(0.5)
             g2.send('$sv=1')
             g2.send('$si=100')
-
-            w.gb_Joint.setEnabled(True)
-            w.gb_Carter.setEnabled(True)
-            w.gb_Setting.setEnabled(True)
-
         except:
             error = g2.s.port + " connect ERROR"
             w.lb_stt_com.setText(error)
@@ -42,7 +38,7 @@ class MyThread(QThread):
                 data = data.decode()
                 self.data.emit(data)
             # else:
-            time.sleep(0.1)
+            # time.sleep(0.1)
 
 class window(QtWidgets.QMainWindow):
     gcode = ''
@@ -62,6 +58,7 @@ class window(QtWidgets.QMainWindow):
         self.btn_Resume.clicked.connect(self.btnResume)
         self.btn_Run.clicked.connect(self.btnRun)
         self.btn_ZeroAll.clicked.connect(self.btnZeroAll)
+        self.btn_HomeAll.clicked.connect(self.btnHomeAll)
 
         self.btn_X1.clicked.connect(self.btnX1)
         self.btn_X2.clicked.connect(self.btnX2)
@@ -98,13 +95,14 @@ class window(QtWidgets.QMainWindow):
         self.thread.data.connect(self.setStatus)
         self.btn_Connectg2.clicked.connect(self.btnConnectg2)
         self.show()
-
+    def btnHomeAll(self):
+        g2.send('g28.2x0y0z0u0')
     def btnOutput1(self):
         if self.cb_Output1.isChecked():
             g2.send('$out1=1')
         else:
             g2.send('$out1=0')
-    def btnOutput2(self):
+    def btnOutput2(self):x
         if self.cb_Output2.isChecked():
             g2.send('$out2=1')
         else:

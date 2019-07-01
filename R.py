@@ -67,7 +67,8 @@ def ikine(position, otp):
         j[1] = - atan2(c1*tx + s1*ty - 350, c1*ty - s1*tx) + atan2(350, (-(tx**2 - 700*c1*tx + ty**2 - 700*s1*ty)**0.5).real)
     else:
         j[1] = - atan2(c1*tx + s1*ty - 350, c1*ty - s1*tx) + atan2(350, ((tx**2 - 700*c1*tx + ty**2 - 700*s1*ty)**0.5).real)
-
+    if j[1]>135*pi/180:
+        j[1] = j[1] - 360*pi/180
     j[2] = -tz * pi/180
 
     j[3] = j[0] + j[1] + roll * pi/180

@@ -53,7 +53,7 @@
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab_4">
      <attribute name="title">
@@ -110,7 +110,7 @@
       </property>
       <widget class="QGroupBox" name="gb_Carter">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="geometry">
         <rect>
@@ -136,7 +136,7 @@
          <item row="3" column="0">
           <widget class="QPushButton" name="btn_ROLL1">
            <property name="enabled">
-            <bool>false</bool>
+            <bool>true</bool>
            </property>
            <property name="text">
             <string>+</string>
@@ -146,7 +146,7 @@
          <item row="0" column="1">
           <widget class="QLabel" name="label_12">
            <property name="enabled">
-            <bool>false</bool>
+            <bool>true</bool>
            </property>
            <property name="font">
             <font>
@@ -164,7 +164,7 @@
          <item row="3" column="1">
           <widget class="QLabel" name="label_21">
            <property name="enabled">
-            <bool>false</bool>
+            <bool>true</bool>
            </property>
            <property name="font">
             <font>
@@ -182,7 +182,7 @@
          <item row="1" column="1">
           <widget class="QLabel" name="label_19">
            <property name="enabled">
-            <bool>false</bool>
+            <bool>true</bool>
            </property>
            <property name="font">
             <font>
@@ -200,7 +200,7 @@
          <item row="0" column="0">
           <widget class="QPushButton" name="btn_PX1">
            <property name="enabled">
-            <bool>false</bool>
+            <bool>true</bool>
            </property>
            <property name="text">
             <string>+</string>
@@ -210,7 +210,7 @@
          <item row="2" column="1">
           <widget class="QLabel" name="label_20">
            <property name="enabled">
-            <bool>false</bool>
+            <bool>true</bool>
            </property>
            <property name="font">
             <font>
@@ -228,7 +228,7 @@
          <item row="1" column="0">
           <widget class="QPushButton" name="btn_PY1">
            <property name="enabled">
-            <bool>false</bool>
+            <bool>true</bool>
            </property>
            <property name="text">
             <string>+</string>
@@ -238,7 +238,7 @@
          <item row="2" column="0">
           <widget class="QPushButton" name="btn_PZ1">
            <property name="enabled">
-            <bool>false</bool>
+            <bool>true</bool>
            </property>
            <property name="text">
             <string>+</string>
@@ -248,7 +248,7 @@
          <item row="0" column="2">
           <widget class="QPushButton" name="btn_PX2">
            <property name="enabled">
-            <bool>false</bool>
+            <bool>true</bool>
            </property>
            <property name="text">
             <string>-</string>
@@ -258,7 +258,7 @@
          <item row="1" column="2">
           <widget class="QPushButton" name="btn_PY2">
            <property name="enabled">
-            <bool>false</bool>
+            <bool>true</bool>
            </property>
            <property name="text">
             <string>-</string>
@@ -268,7 +268,7 @@
          <item row="2" column="2">
           <widget class="QPushButton" name="btn_PZ2">
            <property name="enabled">
-            <bool>false</bool>
+            <bool>true</bool>
            </property>
            <property name="text">
             <string>-</string>
@@ -278,7 +278,7 @@
          <item row="3" column="2">
           <widget class="QPushButton" name="btn_ROLL2">
            <property name="enabled">
-            <bool>false</bool>
+            <bool>true</bool>
            </property>
            <property name="text">
             <string>-</string>
@@ -290,14 +290,14 @@
       </widget>
       <widget class="QGroupBox" name="gb_Joint">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="geometry">
         <rect>
          <x>40</x>
          <y>50</y>
          <width>301</width>
-         <height>321</height>
+         <height>301</height>
         </rect>
        </property>
        <property name="title">
@@ -307,7 +307,7 @@
         <property name="geometry">
          <rect>
           <x>20</x>
-          <y>49</y>
+          <y>40</y>
           <width>271</width>
           <height>251</height>
          </rect>
@@ -316,7 +316,7 @@
          <item row="1" column="0">
           <widget class="QPushButton" name="btn_Y1">
            <property name="enabled">
-            <bool>false</bool>
+            <bool>true</bool>
            </property>
            <property name="text">
             <string>+</string>
@@ -326,7 +326,7 @@
          <item row="2" column="0">
           <widget class="QPushButton" name="btn_Z1">
            <property name="enabled">
-            <bool>false</bool>
+            <bool>true</bool>
            </property>
            <property name="text">
             <string>+</string>
@@ -336,7 +336,7 @@
          <item row="1" column="1">
           <widget class="QLabel" name="label_3">
            <property name="enabled">
-            <bool>false</bool>
+            <bool>true</bool>
            </property>
            <property name="font">
             <font>
@@ -354,7 +354,7 @@
          <item row="3" column="0">
           <widget class="QPushButton" name="btn_U1">
            <property name="enabled">
-            <bool>false</bool>
+            <bool>true</bool>
            </property>
            <property name="text">
             <string>+</string>
@@ -364,7 +364,7 @@
          <item row="3" column="1">
           <widget class="QLabel" name="label_5">
            <property name="enabled">
-            <bool>false</bool>
+            <bool>true</bool>
            </property>
            <property name="font">
             <font>
@@ -382,7 +382,7 @@
          <item row="0" column="1">
           <widget class="QLabel" name="label_2">
            <property name="enabled">
-            <bool>false</bool>
+            <bool>true</bool>
            </property>
            <property name="font">
             <font>
@@ -400,7 +400,7 @@
          <item row="2" column="1">
           <widget class="QLabel" name="label_4">
            <property name="enabled">
-            <bool>false</bool>
+            <bool>true</bool>
            </property>
            <property name="font">
             <font>
@@ -418,7 +418,7 @@
          <item row="0" column="0">
           <widget class="QPushButton" name="btn_X1">
            <property name="enabled">
-            <bool>false</bool>
+            <bool>true</bool>
            </property>
            <property name="text">
             <string>+</string>
@@ -428,7 +428,7 @@
          <item row="0" column="2">
           <widget class="QPushButton" name="btn_X2">
            <property name="enabled">
-            <bool>false</bool>
+            <bool>true</bool>
            </property>
            <property name="text">
             <string>-</string>
@@ -438,7 +438,7 @@
          <item row="1" column="2">
           <widget class="QPushButton" name="btn_Y2">
            <property name="enabled">
-            <bool>false</bool>
+            <bool>true</bool>
            </property>
            <property name="text">
             <string>-</string>
@@ -448,7 +448,7 @@
          <item row="2" column="2">
           <widget class="QPushButton" name="btn_Z2">
            <property name="enabled">
-            <bool>false</bool>
+            <bool>true</bool>
            </property>
            <property name="text">
             <string>-</string>
@@ -458,7 +458,7 @@
          <item row="3" column="2">
           <widget class="QPushButton" name="btn_U2">
            <property name="enabled">
-            <bool>false</bool>
+            <bool>true</bool>
            </property>
            <property name="text">
             <string>-</string>
@@ -470,7 +470,7 @@
       </widget>
       <widget class="QGroupBox" name="gb_Setting">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="geometry">
         <rect>
@@ -579,7 +579,7 @@
          <number>100</number>
         </property>
         <property name="value">
-         <number>10</number>
+         <number>100</number>
         </property>
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -643,7 +643,7 @@
          <number>100</number>
         </property>
         <property name="value">
-         <number>10</number>
+         <number>100</number>
         </property>
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -725,7 +725,7 @@
          <string>Servo ON</string>
         </property>
         <property name="checked">
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
        </widget>
        <widget class="QGroupBox" name="groupBox_2">
@@ -1520,7 +1520,7 @@ p, li { white-space: pre-wrap; }
      </font>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <property name="documentMode">
      <bool>false</bool>
@@ -1544,9 +1544,9 @@ p, li { white-space: pre-wrap; }
       </property>
       <property name="geometry">
        <rect>
-        <x>100</x>
-        <y>170</y>
-        <width>101</width>
+        <x>220</x>
+        <y>90</y>
+        <width>121</width>
         <height>71</height>
        </rect>
       </property>
@@ -1663,6 +1663,31 @@ color: rgb(255, 255, 255);</string>
        <string>Run</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="btn_HomeAll">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>10</y>
+        <width>121</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>16</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 85, 0);</string>
+      </property>
+      <property name="text">
+       <string>Home All</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_6">
      <attribute name="title">
@@ -1674,7 +1699,7 @@ color: rgb(255, 255, 255);</string>
         <x>10</x>
         <y>10</y>
         <width>721</width>
-        <height>341</height>
+        <height>261</height>
        </rect>
       </property>
       <property name="rowCount">
@@ -1726,22 +1751,6 @@ color: rgb(255, 255, 255);</string>
    </hints>
   </connection>
   <connection>
-   <sender>tabWidget_1</sender>
-   <signal>tabBarClicked(int)</signal>
-   <receiver>btn_Connectg2</receiver>
-   <slot>hide()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>1370</x>
-     <y>0</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>1094</x>
-     <y>62</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>cbb_comecd</sender>
    <signal>currentTextChanged(QString)</signal>
    <receiver>btn_Connectecd</receiver>
@@ -1770,22 +1779,6 @@ color: rgb(255, 255, 255);</string>
     <hint type="destinationlabel">
      <x>1181</x>
      <y>356</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>tabWidget_1</sender>
-   <signal>tabBarClicked(int)</signal>
-   <receiver>btn_Connectecd</receiver>
-   <slot>hide()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>1370</x>
-     <y>0</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>1094</x>
-     <y>132</y>
     </hint>
    </hints>
   </connection>
