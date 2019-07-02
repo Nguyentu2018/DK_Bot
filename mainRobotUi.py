@@ -1,6 +1,7 @@
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtCore import QThread, pyqtSignal
+from PyQt5.QtWidgets import QTableWidgetItem
 import serial.tools.list_ports
 import g2
 import Stt
@@ -8,6 +9,7 @@ import json
 import R
 from robopy.base.transforms import tr2rpy
 import time
+import numpy as np
 
 
 class MyThread(QThread):
@@ -23,11 +25,7 @@ class MyThread(QThread):
             g2.send('$sv=2')
             g2.send('$ej=1')
             g2.send('g54')
-            g2.send('g54')
-            g2.send('g54')
-            time.sleep(0.5)
-            g2.send('$sv=1')
-            g2.send('$si=100')
+            g2.send('$si=250')
         except:
             error = g2.s.port + " connect ERROR"
             w.lb_stt_com.setText(error)
@@ -81,6 +79,12 @@ class window(QtWidgets.QMainWindow):
         self.cb_Output8.clicked.connect(self.btnOutput8)
         self.cb_Output9.clicked.connect(self.btnOutput9)
 
+        self.btn_Add.clicked.connect(self.btnAdd)
+        self.btn_Inset.clicked.connect(self.btnInset)
+        self.btn_Save.clicked.connect(self.btnSave)
+        self.btn_Delete.clicked.connect(self.btnDelete)
+        self.table.cellClicked.connect(self.on_click)
+
         self.btn_PX1.clicked.connect(self.btnPX1)
         self.btn_PX2.clicked.connect(self.btnPX2)
         self.btn_PY1.clicked.connect(self.btnPY1)
@@ -95,6 +99,54 @@ class window(QtWidgets.QMainWindow):
         self.thread.data.connect(self.setStatus)
         self.btn_Connectg2.clicked.connect(self.btnConnectg2)
         self.show()
+
+    def btnSave(self):
+        r = self.table.rowCount()
+        c = self.table.columnCount()
+        data = []
+        for row in range(r):
+            d = []
+            for column in range(c):
+                item = self.table.item(row, column).text()
+                d.append(item)
+            data.append(d)
+        print(data)
+
+    def btnDelete(self):
+        hang = self.table.currentRow()
+        if hang != 0:
+            self.table.removeRow(hang)
+    def btnInset(self):
+        hang = self.table.currentRow()
+        self.table.insertRow(hang)
+    def on_click(self):
+        cot =  self.table.currentColumn()
+        hang = self.table.currentRow()
+        item = self.table.item(hang,cot)
+        try:
+            print(hang,cot,item.text())
+        except:
+            print('none')
+    def btnAdd(self):
+        self.table.setItem(0, 0, QTableWidgetItem("PX"))
+        self.table.setItem(0, 1, QTableWidgetItem("PY"))
+        self.table.setItem(0, 2, QTableWidgetItem("PZ"))
+        self.table.setItem(0, 3, QTableWidgetItem("Roll"))
+        self.table.setItem(0, 4, QTableWidgetItem("Mode"))
+        self.table.setItem(0, 5, QTableWidgetItem("Vel %"))
+        hang = self.table.rowCount()
+        self.table.insertRow(hang)
+        px = self.lb_px.text()
+        py = self.lb_py.text()
+        pz = self.lb_pz.text()
+        roll = self.lb_roll.text()
+        self.table.setItem(hang, 0, QTableWidgetItem(px))
+        self.table.setItem(hang, 1, QTableWidgetItem(py))
+        self.table.setItem(hang, 2, QTableWidgetItem(pz))
+        self.table.setItem(hang, 3, QTableWidgetItem(roll))
+        self.table.setItem(hang, 4, QTableWidgetItem("P"))
+        self.table.setItem(hang, 5, QTableWidgetItem("15"))
+
     def btnHomeAll(self):
         g2.send('g28.2x0y0z0u0')
     def btnOutput1(self):
@@ -102,7 +154,7 @@ class window(QtWidgets.QMainWindow):
             g2.send('$out1=1')
         else:
             g2.send('$out1=0')
-    def btnOutput2(self):x
+    def btnOutput2(self):
         if self.cb_Output2.isChecked():
             g2.send('$out2=1')
         else:
