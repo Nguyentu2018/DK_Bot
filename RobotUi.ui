@@ -206,7 +206,7 @@
        <string>Inset row</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="btn_Save_2">
+     <widget class="QPushButton" name="btn_Delete_Program">
       <property name="geometry">
        <rect>
         <x>680</x>
@@ -1884,12 +1884,12 @@ background-color: rgb(0, 85, 0);</string>
    <slot>click()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1129</x>
-     <y>444</y>
+     <x>1148</x>
+     <y>433</y>
     </hint>
     <hint type="destinationlabel">
      <x>1229</x>
-     <y>446</y>
+     <y>434</y>
     </hint>
    </hints>
   </connection>
@@ -1933,11 +1933,11 @@ background-color: rgb(0, 85, 0);</string>
    <hints>
     <hint type="sourcelabel">
      <x>1050</x>
-     <y>751</y>
+     <y>743</y>
     </hint>
     <hint type="destinationlabel">
      <x>940</x>
-     <y>722</y>
+     <y>714</y>
     </hint>
    </hints>
   </connection>
@@ -1964,12 +1964,12 @@ background-color: rgb(0, 85, 0);</string>
    <slot>click()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1362</x>
-     <y>312</y>
+     <x>1355</x>
+     <y>296</y>
     </hint>
     <hint type="destinationlabel">
      <x>1119</x>
-     <y>317</y>
+     <y>301</y>
     </hint>
    </hints>
   </connection>
@@ -1981,11 +1981,11 @@ background-color: rgb(0, 85, 0);</string>
    <hints>
     <hint type="sourcelabel">
      <x>1538</x>
-     <y>312</y>
+     <y>296</y>
     </hint>
     <hint type="destinationlabel">
-     <x>943</x>
-     <y>317</y>
+     <x>936</x>
+     <y>301</y>
     </hint>
    </hints>
   </connection>
@@ -1996,12 +1996,12 @@ background-color: rgb(0, 85, 0);</string>
    <slot>click()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1362</x>
-     <y>375</y>
+     <x>1355</x>
+     <y>356</y>
     </hint>
     <hint type="destinationlabel">
-     <x>943</x>
-     <y>378</y>
+     <x>936</x>
+     <y>359</y>
     </hint>
    </hints>
   </connection>
@@ -2013,11 +2013,11 @@ background-color: rgb(0, 85, 0);</string>
    <hints>
     <hint type="sourcelabel">
      <x>1538</x>
-     <y>375</y>
+     <y>356</y>
     </hint>
     <hint type="destinationlabel">
      <x>1119</x>
-     <y>378</y>
+     <y>359</y>
     </hint>
    </hints>
   </connection>
@@ -2039,17 +2039,17 @@ background-color: rgb(0, 85, 0);</string>
   </connection>
   <connection>
    <sender>cbb_Program</sender>
-   <signal>currentIndexChanged(int)</signal>
+   <signal>activated(QString)</signal>
    <receiver>btn_Load</receiver>
    <slot>click()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1429</x>
-     <y>85</y>
+     <x>1042</x>
+     <y>69</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1519</x>
-     <y>77</y>
+     <x>1503</x>
+     <y>69</y>
     </hint>
    </hints>
   </connection>

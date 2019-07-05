@@ -85,6 +85,7 @@ class window(QtWidgets.QMainWindow):
         self.btn_Delete.clicked.connect(self.btnDelete)
         self.table.cellClicked.connect(self.on_click)
         self.btn_Load.clicked.connect(self.btnLoad)
+        self.btn_Delete_Program.clicked.connect(self.btnDeleteProgram)
 
         self.btn_PX1.clicked.connect(self.btnPX1)
         self.btn_PX2.clicked.connect(self.btnPX2)
@@ -101,10 +102,21 @@ class window(QtWidgets.QMainWindow):
         self.btn_Connectg2.clicked.connect(self.btnConnectg2)
 
         namepg = pg.get_all_nameTableDB()
-        self.loadTable(namepg[0])
-        self.cbb_Program.addItems(namepg)
+        name = namepg[::-1]
+        if len(name)>0:
+            self.loadTable(name[0])
+            self.cbb_Program.addItems(name)
 
         self.show()
+
+    def btnDeleteProgram(self):
+        name1 = self.cbb_Program.currentText()
+        pg.del_and_update(name1)
+        self.cbb_Program.clear()
+        name2 = pg.get_all_nameTableDB()
+        self.cbb_Program.addItems(name2[::-1])
+        self.loadTable(name2[0])
+
     def btnLoad(self):
         namepg = self.cbb_Program.currentText()
         self.loadTable(namepg)
@@ -139,6 +151,12 @@ class window(QtWidgets.QMainWindow):
             for r in range(len(data)):
                 pg.data_entry(namepg, data[r])
             pg.conn.commit()
+            message = namepg + " save Ok"
+            QMessageBox.about(self, "Save", message)
+            name2 = pg.get_all_nameTableDB()
+            self.cbb_Program.clear()
+            self.cbb_Program.addItems(name2[::-1])
+            self.loadTable(namepg)
 
     def loadTable(self, name):
         try:
