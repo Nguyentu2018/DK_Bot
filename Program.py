@@ -14,15 +14,16 @@ def create_table(name):
                 vel REAL)""")
 
 # nhap lieu vao table trong data
-def data_entry(name):
+def data_entry(name, data):
     c.execute('INSERT INTO ' + name + ' VALUES(?, ?, ?, ?, ?, ?)',
-              (150, 200, 301, 402, 'P', 60))
+              (data))
     # save
-    conn.commit()
+    # conn.commit()
 
 def read_from_db(name):
     c.execute('SELECT * FROM ' + name)
-    [print(row) for row in c.fetchall()]
+    data = c.fetchall()
+    return data
 
 def del_and_update(name):
     # c.execute("""UPDATE """ + name + """ SET px = 0, pz = 0 WHERE py = 200""")
@@ -37,14 +38,19 @@ def del_and_update(name):
 
 def get_all_nameTableDB():
     sql = "SELECT name FROM sqlite_master WHERE type='table'"
-    res = c.execute(sql)
+    c.execute(sql)
     name = c.fetchall()
-    print(name)
-    return name
+    namepg = []
+    for i in range(len(name)):
+        namepg.append(name[i][0])
+    # print(namepg)
+    return namepg
 
-# name = "ct1"
+# name = "ct3"
+# data = [0, 0, 0, 0, 'p', 15]
+# read_from_db(name)
 # create_table(name)
-# data_entry(name)
+# data_entry(name, data)
 # get_all_nameTableDB()
 # c.close()
 # conn.close()

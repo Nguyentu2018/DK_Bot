@@ -55,18 +55,27 @@
     <property name="currentIndex">
      <number>0</number>
     </property>
+    <property name="documentMode">
+     <bool>true</bool>
+    </property>
+    <property name="movable">
+     <bool>true</bool>
+    </property>
     <widget class="QWidget" name="tab_4">
      <attribute name="title">
       <string>Program</string>
      </attribute>
-     <widget class="QComboBox" name="comboBox">
+     <widget class="QComboBox" name="cbb_Program">
       <property name="geometry">
        <rect>
         <x>210</x>
         <y>10</y>
-        <width>531</width>
+        <width>481</width>
         <height>41</height>
        </rect>
+      </property>
+      <property name="editable">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QLabel" name="label">
@@ -74,12 +83,143 @@
        <rect>
         <x>10</x>
         <y>20</y>
-        <width>201</width>
+        <width>191</width>
         <height>31</height>
        </rect>
       </property>
       <property name="text">
        <string>Chose Program:</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_Load">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>700</x>
+        <y>10</y>
+        <width>81</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Load</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="default">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_Save">
+      <property name="geometry">
+       <rect>
+        <x>540</x>
+        <y>670</y>
+        <width>121</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(0, 0, 255);</string>
+      </property>
+      <property name="text">
+       <string>Save Program</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_Add">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>670</y>
+        <width>81</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Add</string>
+      </property>
+     </widget>
+     <widget class="QTableWidget" name="table">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>90</y>
+        <width>771</width>
+        <height>571</height>
+       </rect>
+      </property>
+      <property name="sortingEnabled">
+       <bool>false</bool>
+      </property>
+      <property name="rowCount">
+       <number>1</number>
+      </property>
+      <property name="columnCount">
+       <number>6</number>
+      </property>
+      <attribute name="horizontalHeaderCascadingSectionResizes">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>113</number>
+      </attribute>
+      <row/>
+      <column/>
+      <column/>
+      <column/>
+      <column/>
+      <column/>
+      <column/>
+     </widget>
+     <widget class="QPushButton" name="btn_Delete">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>670</y>
+        <width>141</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Delete row</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_Inset">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>670</y>
+        <width>121</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Inset row</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_Save_2">
+      <property name="geometry">
+       <rect>
+        <x>680</x>
+        <y>670</y>
+        <width>111</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 0, 255);</string>
+      </property>
+      <property name="text">
+       <string>Delete Program</string>
       </property>
      </widget>
     </widget>
@@ -352,7 +492,7 @@
           </widget>
          </item>
          <item row="3" column="0">
-          <widget class="QPushButton" name="btn_U1">
+          <widget class="QPushButton" name="btn_A1">
            <property name="enabled">
             <bool>true</bool>
            </property>
@@ -372,7 +512,7 @@
             </font>
            </property>
            <property name="text">
-            <string>U (j3)</string>
+            <string>A (j3)</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -456,7 +596,7 @@
           </widget>
          </item>
          <item row="3" column="2">
-          <widget class="QPushButton" name="btn_U2">
+          <widget class="QPushButton" name="btn_A2">
            <property name="enabled">
             <bool>true</bool>
            </property>
@@ -1129,7 +1269,7 @@ p, li { white-space: pre-wrap; }
          </font>
         </property>
         <property name="text">
-         <string>U (j3)</string>
+         <string>A (j3)</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -1233,7 +1373,7 @@ p, li { white-space: pre-wrap; }
        </widget>
       </item>
       <item row="5" column="1">
-       <widget class="QLabel" name="lb_u">
+       <widget class="QLabel" name="lb_a">
         <property name="font">
          <font>
           <pointsize>16</pointsize>
@@ -1520,7 +1660,7 @@ p, li { white-space: pre-wrap; }
      </font>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <property name="documentMode">
      <bool>false</bool>
@@ -1693,90 +1833,6 @@ background-color: rgb(0, 85, 0);</string>
      <attribute name="title">
       <string>Table Position</string>
      </attribute>
-     <widget class="QTableWidget" name="table">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>721</width>
-        <height>261</height>
-       </rect>
-      </property>
-      <property name="sortingEnabled">
-       <bool>false</bool>
-      </property>
-      <property name="rowCount">
-       <number>1</number>
-      </property>
-      <property name="columnCount">
-       <number>6</number>
-      </property>
-      <attribute name="horizontalHeaderCascadingSectionResizes">
-       <bool>false</bool>
-      </attribute>
-      <attribute name="horizontalHeaderDefaultSectionSize">
-       <number>113</number>
-      </attribute>
-      <row/>
-      <column/>
-      <column/>
-      <column/>
-      <column/>
-      <column/>
-      <column/>
-     </widget>
-     <widget class="QPushButton" name="btn_Add">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>290</y>
-        <width>111</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Add</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="btn_Delete">
-      <property name="geometry">
-       <rect>
-        <x>240</x>
-        <y>290</y>
-        <width>111</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Delete</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="btn_Inset">
-      <property name="geometry">
-       <rect>
-        <x>120</x>
-        <y>290</y>
-        <width>111</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Inset</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="btn_Save">
-      <property name="geometry">
-       <rect>
-        <x>620</x>
-        <y>290</y>
-        <width>111</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Save</string>
-      </property>
-     </widget>
     </widget>
     <widget class="QWidget" name="tab_7">
      <attribute name="title">
@@ -1828,12 +1884,12 @@ background-color: rgb(0, 85, 0);</string>
    <slot>click()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1131</x>
-     <y>407</y>
+     <x>1129</x>
+     <y>444</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1231</x>
-     <y>406</y>
+     <x>1229</x>
+     <y>446</y>
     </hint>
    </hints>
   </connection>
@@ -1876,12 +1932,12 @@ background-color: rgb(0, 85, 0);</string>
    <slot>setNum(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1052</x>
-     <y>722</y>
+     <x>1050</x>
+     <y>751</y>
     </hint>
     <hint type="destinationlabel">
-     <x>942</x>
-     <y>682</y>
+     <x>940</x>
+     <y>722</y>
     </hint>
    </hints>
   </connection>
@@ -1908,12 +1964,12 @@ background-color: rgb(0, 85, 0);</string>
    <slot>click()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1364</x>
-     <y>313</y>
+     <x>1362</x>
+     <y>312</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1121</x>
-     <y>318</y>
+     <x>1119</x>
+     <y>317</y>
     </hint>
    </hints>
   </connection>
@@ -1924,44 +1980,44 @@ background-color: rgb(0, 85, 0);</string>
    <slot>click()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1540</x>
-     <y>313</y>
+     <x>1538</x>
+     <y>312</y>
     </hint>
     <hint type="destinationlabel">
-     <x>945</x>
-     <y>318</y>
+     <x>943</x>
+     <y>317</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>btn_ROLL1</sender>
    <signal>clicked()</signal>
-   <receiver>btn_U1</receiver>
+   <receiver>btn_A1</receiver>
    <slot>click()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1364</x>
-     <y>376</y>
+     <x>1362</x>
+     <y>375</y>
     </hint>
     <hint type="destinationlabel">
-     <x>945</x>
-     <y>379</y>
+     <x>943</x>
+     <y>378</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>btn_ROLL2</sender>
    <signal>clicked()</signal>
-   <receiver>btn_U2</receiver>
+   <receiver>btn_A2</receiver>
    <slot>click()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1540</x>
-     <y>376</y>
+     <x>1538</x>
+     <y>375</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1121</x>
-     <y>379</y>
+     <x>1119</x>
+     <y>378</y>
     </hint>
    </hints>
   </connection>
@@ -1972,12 +2028,28 @@ background-color: rgb(0, 85, 0);</string>
    <slot>setNum(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>462</x>
-     <y>491</y>
+     <x>1242</x>
+     <y>191</y>
     </hint>
     <hint type="destinationlabel">
      <x>614</x>
      <y>217</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cbb_Program</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>btn_Load</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1429</x>
+     <y>85</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1519</x>
+     <y>77</y>
     </hint>
    </hints>
   </connection>

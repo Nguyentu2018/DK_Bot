@@ -9,7 +9,7 @@ import json
 import R
 from robopy.base.transforms import tr2rpy
 import time
-import numpy as np
+import Program as pg
 
 
 class MyThread(QThread):
@@ -25,7 +25,7 @@ class MyThread(QThread):
             g2.send('$sv=2')
             g2.send('$ej=1')
             g2.send('g54')
-            g2.send('$si=250')
+            g2.send('$si=100')
         except:
             error = g2.s.port + " connect ERROR"
             w.lb_stt_com.setText(error)
@@ -64,8 +64,8 @@ class window(QtWidgets.QMainWindow):
         self.btn_Y2.clicked.connect(self.btnY2)
         self.btn_Z1.clicked.connect(self.btnZ1)
         self.btn_Z2.clicked.connect(self.btnZ2)
-        self.btn_U1.clicked.connect(self.btnU1)
-        self.btn_U2.clicked.connect(self.btnU2)
+        self.btn_A1.clicked.connect(self.btnA1)
+        self.btn_A2.clicked.connect(self.btnA2)
         self.rb_Left.clicked.connect(self.btnLeftArm)
         self.rb_Right.clicked.connect(self.btnRightArm)
         self.cb_ServoON.clicked.connect(self.btnServoON)
@@ -84,6 +84,7 @@ class window(QtWidgets.QMainWindow):
         self.btn_Save.clicked.connect(self.btnSave)
         self.btn_Delete.clicked.connect(self.btnDelete)
         self.table.cellClicked.connect(self.on_click)
+        self.btn_Load.clicked.connect(self.btnLoad)
 
         self.btn_PX1.clicked.connect(self.btnPX1)
         self.btn_PX2.clicked.connect(self.btnPX2)
@@ -98,19 +99,72 @@ class window(QtWidgets.QMainWindow):
         self.cbb_comg2.addItems(comg2)
         self.thread.data.connect(self.setStatus)
         self.btn_Connectg2.clicked.connect(self.btnConnectg2)
+
+        namepg = pg.get_all_nameTableDB()
+        self.loadTable(namepg[0])
+        self.cbb_Program.addItems(namepg)
+
         self.show()
+    def btnLoad(self):
+        namepg = self.cbb_Program.currentText()
+        self.loadTable(namepg)
 
     def btnSave(self):
         r = self.table.rowCount()
         c = self.table.columnCount()
         data = []
-        for row in range(r):
+        error = 0
+        for row in range(1, r):
             d = []
             for column in range(c):
                 item = self.table.item(row, column).text()
-                d.append(item)
-            data.append(d)
-        print(data)
+                if column == 4:
+                    d.append(item)
+                else:
+                    try:
+                        d.append(float(item))
+                    except:
+                        error = 1
+                        message = "row: " + str(row+1) + " Column: " + str(column+1) + " must be number!"
+                        QMessageBox.about(self, "Program Error", message)
+                        break
+            if error:
+                break
+            else:
+                data.append(d)
+        if error == 0:
+            namepg = self.cbb_Program.currentText()
+            pg.del_and_update(namepg)
+            pg.create_table(namepg)
+            for r in range(len(data)):
+                pg.data_entry(namepg, data[r])
+            pg.conn.commit()
+
+    def loadTable(self, name):
+        try:
+            r = self.table.rowCount()
+            if r > 1:
+                for i in range(1, r):
+                    self.table.removeRow(1)
+            data = pg.read_from_db(name)
+            self.table.setItem(0, 0, QTableWidgetItem("PX"))
+            self.table.setItem(0, 1, QTableWidgetItem("PY"))
+            self.table.setItem(0, 2, QTableWidgetItem("PZ"))
+            self.table.setItem(0, 3, QTableWidgetItem("Roll"))
+            self.table.setItem(0, 4, QTableWidgetItem("Mode"))
+            self.table.setItem(0, 5, QTableWidgetItem("Vel %"))
+            for r in range(len(data)):
+                row = r + 1
+                self.table.insertRow(row)
+                self.table.setItem(row, 0, QTableWidgetItem(str(data[r][0])))
+                self.table.setItem(row, 1, QTableWidgetItem(str(data[r][1])))
+                self.table.setItem(row, 2, QTableWidgetItem(str(data[r][2])))
+                self.table.setItem(row, 3, QTableWidgetItem(str(data[r][3])))
+                self.table.setItem(row, 4, QTableWidgetItem(str(data[r][4])))
+                self.table.setItem(row, 5, QTableWidgetItem(str(data[r][5])))
+        except:
+            print("error")
+            QMessageBox.about(self, "Load Error", "File name no found!")
 
     def btnDelete(self):
         hang = self.table.currentRow()
@@ -122,11 +176,11 @@ class window(QtWidgets.QMainWindow):
     def on_click(self):
         cot =  self.table.currentColumn()
         hang = self.table.currentRow()
-        item = self.table.item(hang,cot)
-        try:
-            print(hang,cot,item.text())
-        except:
-            print('none')
+        item = self.table.item(hang, cot)
+        # try:
+        #     print(hang, cot, item.text())
+        # except:
+        #     print('none')
     def btnAdd(self):
         self.table.setItem(0, 0, QTableWidgetItem("PX"))
         self.table.setItem(0, 1, QTableWidgetItem("PY"))
@@ -148,7 +202,7 @@ class window(QtWidgets.QMainWindow):
         self.table.setItem(hang, 5, QTableWidgetItem("15"))
 
     def btnHomeAll(self):
-        g2.send('g28.2x0y0z0u0')
+        g2.send('g28.2x0y0z0a0')
     def btnOutput1(self):
         if self.cb_Output1.isChecked():
             g2.send('$out1=1')
@@ -228,18 +282,19 @@ class window(QtWidgets.QMainWindow):
         j, limit = R.ikine([px, py, pz, roll], otp)
 
         if limit and self.cb_ApplyLimit.isChecked():
-            buttonReply = QMessageBox.question(self, 'PyQt5 message', "Joint is limit!",
-                                               QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
-            if buttonReply == QMessageBox.Yes:
-                print('Yes clicked.')
-            else:
-                print('No clicked.')
+            QMessageBox.about(self, "Error", "Joint is limit!")
+            # buttonReply = QMessageBox.question(self, 'PyQt5 message', "Joint is limit!",
+            #                                    QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+            # if buttonReply == QMessageBox.Yes:
+            #     print('Yes clicked.')
+            # else:
+            #     print('No clicked.')
         else:
             vel = str(self.Speed)
             cmd = 'g90g01x' + str(round(j[0], 4)) \
                   + 'y' + str(round(j[1], 4)) \
                   + 'z' + str(round(j[2], 4)) \
-                  + 'u' + str(round(j[3], 4)) \
+                  + 'a' + str(round(j[3], 4)) \
                   + 'f' + vel
             g2.send(cmd)
 
@@ -256,7 +311,7 @@ class window(QtWidgets.QMainWindow):
         self.P_program('PY2')
 
     def btnZeroAll(self):
-        g2.send('g90g0x0y0z0u0')
+        g2.send('g90g0x0y0z0a0')
     def ScrollBarSpeed(self):
         self.Speed = self.ScrollBar_Speed.value()*100
     def ScrollBarJerk(self):
@@ -265,7 +320,7 @@ class window(QtWidgets.QMainWindow):
         g2.send('$xjm=' + jerk)
         g2.send('$yjm=' + jerk)
         g2.send('$zjm=' + jerk)
-        g2.send('$ujm=' + jerk)
+        g2.send('$ajm=' + jerk)
     def btnStop(self):
         g2.send('!')
         time.sleep(0.1)
@@ -319,15 +374,15 @@ class window(QtWidgets.QMainWindow):
         vel = str(self.Speed)
         cmd = 'g91g01z-' + step +'f'+ vel
         g2.send(cmd)
-    def btnU1(self):
+    def btnA1(self):
         step = str(self.SpinBox_Step.value())
         vel = str(self.Speed)
-        cmd = 'g91g01u' + step +'f'+ vel
+        cmd = 'g91g01a' + step +'f'+ vel
         g2.send(cmd)
-    def btnU2(self):
+    def btnA2(self):
         step = str(self.SpinBox_Step.value())
         vel = str(self.Speed)
-        cmd = 'g91g01u-' + step +'f'+ vel
+        cmd = 'g91g01a-' + step +'f'+ vel
         g2.send(cmd)
     def btnSendMDI(self):
         cmd = self.ld_stt.text()
@@ -374,9 +429,9 @@ class window(QtWidgets.QMainWindow):
                     if sr == 'posz':
                         val = data[d][sr]
                         self.lb_z.setText(str(val))
-                    if sr == 'posu':
+                    if sr == 'posa':
                         val = data[d][sr]
-                        self.lb_u.setText(str(val))
+                        self.lb_a.setText(str(val))
                     if sr == 'vel':
                         val = data[d][sr]
                         self.lb_vel.setText(str(val))
@@ -386,15 +441,15 @@ class window(QtWidgets.QMainWindow):
             x = float(self.lb_x.text())
             y = float(self.lb_y.text())
             z = float(self.lb_z.text())
-            u = float(self.lb_u.text())
-            j = [x, y, z, u]
+            a = float(self.lb_a.text())
+            j = [x, y, z, a]
             T = R.fkine2(j)
             self.T = T
             rpy = tr2rpy(T, 'deg', 'xyz')
-            self.lb_px.setText(str(round(T[0,3], 5)))
-            self.lb_py.setText(str(round(T[1,3], 5)))
-            self.lb_pz.setText(str(round(T[2,3], 5)))
-            self.lb_roll.setText(str(round(rpy[0,0], 5)))
+            self.lb_px.setText(str(round(T[0, 3], 5)))
+            self.lb_py.setText(str(round(T[1, 3], 5)))
+            self.lb_pz.setText(str(round(T[2, 3], 5)))
+            self.lb_roll.setText(str(round(rpy[0, 0], 5)))
 
 if __name__ == "__main__":
     # khoi tao app

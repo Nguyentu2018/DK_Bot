@@ -6,25 +6,23 @@ conn = sqlite3.connect('data.db')
 # khoi tao con tro
 c = conn.cursor()
 
-# tao Data
-def CreateData():
-    c.execute("""CREATE TABLE settingLoc(
-                 name text,
-                 lh integer,
-                 ls integer,
-                 lv integer,
-                 uh integer,
-                 us integer,
-                 uv integer
+def CreateData(name):
+    c.execute("""CREATE TABLE IF NOT EXISTS """ + name + """(
+                 PX float,
+                 PY integer,
+                 PZ integer,
+                 ROLL integer,
+                 MODE integer,
+                 VEL integer
                  )""")
-    # cam ket thay doi
-    conn.commit()
-    # dong ket noi
-    conn.close()
+    # # cam ket thay doi
+    # conn.commit()
+    # # dong ket noi
+    # conn.close()
 
-def InsetData():
-    c.execute("INSERT INTO settingLoc VALUES (255, 0, 500,0,0,0)")
 
+def InsetData(name):
+    c.execute("""INSERT INTO """ + name + """ VALUES(255, 0, 500,0,0,0)""")
 
 def UpdateData():
     c.execute("""UPDATE settingLoc SET ls = 1000 where name = '2'""")
@@ -34,7 +32,7 @@ def DocData():
     data = c.fetchall()
     print(data[0])
 
-UpdateData()
-DocData()
-c.close()
+
+InsetData("chuongTrinh1")
+
 
