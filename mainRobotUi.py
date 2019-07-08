@@ -1,6 +1,6 @@
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtWidgets import QMessageBox
-from PyQt5.QtCore import QThread, pyqtSignal
+from PyQt5.QtCore import QThread, pyqtSignal, Qt
 from PyQt5.QtWidgets import QTableWidgetItem
 import serial.tools.list_ports
 import g2
@@ -10,6 +10,7 @@ import R
 from robopy.base.transforms import tr2rpy
 import time
 import Program as pg
+import test
 
 
 class MyThread(QThread):
@@ -95,6 +96,7 @@ class window(QtWidgets.QMainWindow):
         self.btn_SendMDI.clicked.connect(self.btnSendMDI)
         self.btn_ClearMDI.clicked.connect(self.btnClearMDI)
 
+        self.runThread = RunThread()
         self.thread = MyThread()
         comg2 = [comport.device for comport in serial.tools.list_ports.comports()]
         self.cbb_comg2.addItems(comg2)
@@ -106,6 +108,8 @@ class window(QtWidgets.QMainWindow):
         if len(name)>0:
             self.loadTable(name[0])
             self.cbb_Program.addItems(name)
+        self.table.setSelectionBehavior(1)
+        self.table.selectRow(0)
 
         self.show()
 
@@ -195,10 +199,7 @@ class window(QtWidgets.QMainWindow):
         cot =  self.table.currentColumn()
         hang = self.table.currentRow()
         item = self.table.item(hang, cot)
-        # try:
-        #     print(hang, cot, item.text())
-        # except:
-        #     print('none')
+
     def btnAdd(self):
         self.table.setItem(0, 0, QTableWidgetItem("PX"))
         self.table.setItem(0, 1, QTableWidgetItem("PY"))
@@ -220,7 +221,7 @@ class window(QtWidgets.QMainWindow):
         self.table.setItem(hang, 5, QTableWidgetItem("15"))
 
     def btnHomeAll(self):
-        g2.send('g28.2x0y0z0a0')
+        g2.send('g28.2x0y0z0')
     def btnOutput1(self):
         if self.cb_Output1.isChecked():
             g2.send('$out1=1')
@@ -301,12 +302,6 @@ class window(QtWidgets.QMainWindow):
 
         if limit and self.cb_ApplyLimit.isChecked():
             QMessageBox.about(self, "Error", "Joint is limit!")
-            # buttonReply = QMessageBox.question(self, 'PyQt5 message', "Joint is limit!",
-            #                                    QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
-            # if buttonReply == QMessageBox.Yes:
-            #     print('Yes clicked.')
-            # else:
-            #     print('No clicked.')
         else:
             vel = str(self.Speed)
             cmd = 'g90g01x' + str(round(j[0], 4)) \
@@ -351,8 +346,9 @@ class window(QtWidgets.QMainWindow):
         g2.send('~')
         print('resume')
     def btnRun(self):
-        g2.send('~')
-        print('Run')
+        self.gcode = test.Run(self, 'chuongtrinh1')
+        self.runThread.sttRun = 1
+        self.runThread.start()
     def btnConnectg2(self):
         if g2.s.is_open:
             self.thread.STT = 0
@@ -454,6 +450,7 @@ class window(QtWidgets.QMainWindow):
                         val = data[d][sr]
                         self.lb_vel.setText(str(val))
                 self.setStatusPos()
+
     def setStatusPos(self):
         if self.lb_x.text() != "null":
             x = float(self.lb_x.text())
@@ -468,6 +465,28 @@ class window(QtWidgets.QMainWindow):
             self.lb_py.setText(str(round(T[1, 3], 5)))
             self.lb_pz.setText(str(round(T[2, 3], 5)))
             self.lb_roll.setText(str(round(rpy[0, 0], 5)))
+
+class RunThread(QThread):
+    sttRun = 0
+    i = 3
+    def run(self):
+        for n in range(0, 4):
+            cmd = w.gcode[n]
+            g2.send(cmd)
+        while self.sttRun:
+            time.sleep(0.001)
+            if w.OK:
+                w.OK = 0
+                print('ok')
+                self.i+=1
+                if self.i == len(w.gcode):
+                    print('Done:*****************')
+                    w.lb_Line.setText("Done*********")
+                    self.i = 3
+                    break
+                w.lb_Line.setText(str(self.i))
+                cmd = w.gcode[self.i]
+                g2.send(cmd)
 
 if __name__ == "__main__":
     # khoi tao app

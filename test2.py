@@ -1,6 +1,3 @@
-import sys
-def tinh(a,b)
-    c = a + b
-    return c
+name = input("nhap ten: ")
 
-print(sys.getsizeof(tinh(1,500)))
+print(name)

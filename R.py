@@ -57,7 +57,7 @@ def ikine(position, otp):
         j[0] = atan2(- tx ** 2 - ty ** 2,
                      (-(- tx ** 4 - 2 * tx ** 2 * ty ** 2 + 490000 * tx ** 2 - ty ** 4 + 490000 * ty ** 2) ** 0.5).real) - atan2(-tx, -ty)
     else:
-        j[0]= - atan2(-tx, -ty) + atan2(- tx ** 2 - ty ** 2,
+        j[0] = - atan2(-tx, -ty) + atan2(- tx ** 2 - ty ** 2,
                                       ((- tx ** 4 - 2 * tx ** 2 * ty ** 2 + 490000 * tx ** 2 - ty ** 4 + 490000 * ty ** 2) ** 0.5).real)
     if j[0] > pi/2 or j[0] < -pi/2:
         j[0] = 2*pi + j[0]
