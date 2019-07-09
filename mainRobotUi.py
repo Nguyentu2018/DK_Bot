@@ -26,6 +26,8 @@ class MyThread(QThread):
             g2.send('$sv=2')
             g2.send('$ej=1')
             g2.send('g54')
+            time.sleep(1)
+            g2.send('$sv=1')
             g2.send('$si=100')
         except:
             error = g2.s.port + " connect ERROR"
@@ -58,6 +60,7 @@ class window(QtWidgets.QMainWindow):
         self.btn_Run.clicked.connect(self.btnRun)
         self.btn_ZeroAll.clicked.connect(self.btnZeroAll)
         self.btn_HomeAll.clicked.connect(self.btnHomeAll)
+        self.SpinBox_Step_Run.valueChanged.connect(self.StepRun)
 
         self.btn_X1.clicked.connect(self.btnX1)
         self.btn_X2.clicked.connect(self.btnX2)
@@ -112,6 +115,24 @@ class window(QtWidgets.QMainWindow):
         self.table.selectRow(0)
 
         self.show()
+    def StepRun(self):
+        r = self.SpinBox_Step_Run.value()
+        rCount = self.table.rowCount() - 1
+        if r > rCount:
+            r = rCount
+            self.SpinBox_Step_Run.setValue(r)
+            print("error")
+        # self.table.selectRow(r)
+        gcode, error, i = test.RunStep('chuongtrinh1', r)
+        if error:
+            message = "Build Error"
+            QMessageBox.about(self, "Program Error", message)
+        else:
+            self.gcode = gcode
+            self.runThread.sttRun = 1
+            self.runThread.start()
+            self.table.selectRow(i)
+            # self.SpinBox_Step_Run.setValue(i)
 
     def btnDeleteProgram(self):
         name1 = self.cbb_Program.currentText()
@@ -346,9 +367,13 @@ class window(QtWidgets.QMainWindow):
         g2.send('~')
         print('resume')
     def btnRun(self):
-        self.gcode = test.Run(self, 'chuongtrinh1')
-        self.runThread.sttRun = 1
-        self.runThread.start()
+        self.gcode, error = test.Run('chuongtrinh1')
+        if error:
+            message = "Build Error"
+            QMessageBox.about(self, "Program Error", message)
+        else:
+            self.runThread.sttRun = 1
+            self.runThread.start()
     def btnConnectg2(self):
         if g2.s.is_open:
             self.thread.STT = 0
@@ -401,7 +426,6 @@ class window(QtWidgets.QMainWindow):
     def btnSendMDI(self):
         cmd = self.ld_stt.text()
         if cmd != '':
-            g2.send('g90')
             g2.send(cmd)
         self.ld_stt.setText('')
     def btnClearMDI(self):
@@ -470,17 +494,19 @@ class RunThread(QThread):
     sttRun = 0
     i = 3
     def run(self):
-        for n in range(0, 4):
-            cmd = w.gcode[n]
-            g2.send(cmd)
+        if len(w.gcode) > 4:
+            for n in range(0, 4):
+                cmd = w.gcode[n]
+                g2.send(cmd)
+        else:
+            self.i = 0
         while self.sttRun:
             time.sleep(0.001)
             if w.OK:
                 w.OK = 0
-                print('ok')
                 self.i+=1
                 if self.i == len(w.gcode):
-                    print('Done:*****************')
+                    print('#'*50)
                     w.lb_Line.setText("Done*********")
                     self.i = 3
                     break
