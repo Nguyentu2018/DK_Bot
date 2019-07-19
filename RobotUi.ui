@@ -1470,7 +1470,7 @@ p, li { white-space: pre-wrap; }
        <x>10</x>
        <y>40</y>
        <width>381</width>
-       <height>191</height>
+       <height>211</height>
       </rect>
      </property>
      <layout class="QGridLayout" name="gridLayout_3">
@@ -1480,11 +1480,60 @@ p, li { white-space: pre-wrap; }
       <property name="rightMargin">
        <number>0</number>
       </property>
+      <item row="5" column="1">
+       <widget class="QLabel" name="lb_a">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>null</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QLabel" name="lb_b">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>null</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="label_22">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>B (j4)</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
       <item row="5" column="0">
        <widget class="QLabel" name="label_11">
         <property name="font">
          <font>
-          <pointsize>16</pointsize>
+          <pointsize>10</pointsize>
          </font>
         </property>
         <property name="text">
@@ -1499,7 +1548,7 @@ p, li { white-space: pre-wrap; }
        <widget class="QLabel" name="label_9">
         <property name="font">
          <font>
-          <pointsize>16</pointsize>
+          <pointsize>10</pointsize>
          </font>
         </property>
         <property name="text">
@@ -1514,7 +1563,7 @@ p, li { white-space: pre-wrap; }
        <widget class="QLabel" name="label_8">
         <property name="font">
          <font>
-          <pointsize>16</pointsize>
+          <pointsize>10</pointsize>
          </font>
         </property>
         <property name="text">
@@ -1529,7 +1578,7 @@ p, li { white-space: pre-wrap; }
        <widget class="QLabel" name="lb_x">
         <property name="font">
          <font>
-          <pointsize>16</pointsize>
+          <pointsize>10</pointsize>
           <weight>75</weight>
           <bold>true</bold>
          </font>
@@ -1546,7 +1595,7 @@ p, li { white-space: pre-wrap; }
        <widget class="QLabel" name="lb_y">
         <property name="font">
          <font>
-          <pointsize>16</pointsize>
+          <pointsize>10</pointsize>
           <weight>75</weight>
           <bold>true</bold>
          </font>
@@ -1563,7 +1612,7 @@ p, li { white-space: pre-wrap; }
        <widget class="QLabel" name="label_10">
         <property name="font">
          <font>
-          <pointsize>16</pointsize>
+          <pointsize>10</pointsize>
          </font>
         </property>
         <property name="text">
@@ -1578,7 +1627,7 @@ p, li { white-space: pre-wrap; }
        <widget class="QLabel" name="lb_z">
         <property name="font">
          <font>
-          <pointsize>16</pointsize>
+          <pointsize>10</pointsize>
           <weight>75</weight>
           <bold>true</bold>
          </font>
@@ -1591,11 +1640,26 @@ p, li { white-space: pre-wrap; }
         </property>
        </widget>
       </item>
-      <item row="5" column="1">
-       <widget class="QLabel" name="lb_a">
+      <item row="7" column="0">
+       <widget class="QLabel" name="label_32">
         <property name="font">
          <font>
-          <pointsize>16</pointsize>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>C (j5)</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="1">
+       <widget class="QLabel" name="lb_c">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
           <weight>75</weight>
           <bold>true</bold>
          </font>
@@ -1615,8 +1679,8 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>410</x>
        <y>40</y>
-       <width>351</width>
-       <height>195</height>
+       <width>341</width>
+       <height>211</height>
       </rect>
      </property>
      <layout class="QGridLayout" name="gridLayout_4">
@@ -1626,11 +1690,28 @@ p, li { white-space: pre-wrap; }
       <property name="rightMargin">
        <number>0</number>
       </property>
+      <item row="6" column="1">
+       <widget class="QLabel" name="lb_pitch">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>null</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
       <item row="2" column="0">
        <widget class="QLabel" name="label_26">
         <property name="font">
          <font>
-          <pointsize>16</pointsize>
+          <pointsize>10</pointsize>
          </font>
         </property>
         <property name="text">
@@ -1645,7 +1726,7 @@ p, li { white-space: pre-wrap; }
        <widget class="QLabel" name="label_30">
         <property name="font">
          <font>
-          <pointsize>16</pointsize>
+          <pointsize>10</pointsize>
          </font>
         </property>
         <property name="text">
@@ -1660,7 +1741,7 @@ p, li { white-space: pre-wrap; }
        <widget class="QLabel" name="label_37">
         <property name="font">
          <font>
-          <pointsize>16</pointsize>
+          <pointsize>10</pointsize>
          </font>
         </property>
         <property name="text">
@@ -1675,7 +1756,7 @@ p, li { white-space: pre-wrap; }
        <widget class="QLabel" name="lb_pz">
         <property name="font">
          <font>
-          <pointsize>16</pointsize>
+          <pointsize>10</pointsize>
           <weight>75</weight>
           <bold>true</bold>
          </font>
@@ -1688,11 +1769,11 @@ p, li { white-space: pre-wrap; }
         </property>
        </widget>
       </item>
-      <item row="6" column="0">
+      <item row="8" column="0">
        <widget class="QLabel" name="label_38">
         <property name="font">
          <font>
-          <pointsize>16</pointsize>
+          <pointsize>10</pointsize>
          </font>
         </property>
         <property name="text">
@@ -1707,7 +1788,7 @@ p, li { white-space: pre-wrap; }
        <widget class="QLabel" name="lb_py">
         <property name="font">
          <font>
-          <pointsize>16</pointsize>
+          <pointsize>10</pointsize>
           <weight>75</weight>
           <bold>true</bold>
          </font>
@@ -1724,7 +1805,7 @@ p, li { white-space: pre-wrap; }
        <widget class="QLabel" name="lb_px">
         <property name="font">
          <font>
-          <pointsize>16</pointsize>
+          <pointsize>10</pointsize>
           <weight>75</weight>
           <bold>true</bold>
          </font>
@@ -1741,11 +1822,11 @@ p, li { white-space: pre-wrap; }
        <widget class="QLabel" name="label_36">
         <property name="font">
          <font>
-          <pointsize>16</pointsize>
+          <pointsize>10</pointsize>
          </font>
         </property>
         <property name="text">
-         <string>Roll</string>
+         <string>R</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -1756,7 +1837,7 @@ p, li { white-space: pre-wrap; }
        <widget class="QLabel" name="lb_roll">
         <property name="font">
          <font>
-          <pointsize>16</pointsize>
+          <pointsize>10</pointsize>
           <weight>75</weight>
           <bold>true</bold>
          </font>
@@ -1769,11 +1850,58 @@ p, li { white-space: pre-wrap; }
         </property>
        </widget>
       </item>
-      <item row="6" column="1">
+      <item row="8" column="1">
        <widget class="QLabel" name="lb_vel">
         <property name="font">
          <font>
-          <pointsize>16</pointsize>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>null</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="label_39">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>P</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="0">
+       <widget class="QLabel" name="label_41">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Y</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="1">
+       <widget class="QLabel" name="lb_yam">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
           <weight>75</weight>
           <bold>true</bold>
          </font>
@@ -1793,7 +1921,7 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>210</x>
        <y>270</y>
-       <width>541</width>
+       <width>531</width>
        <height>31</height>
       </rect>
      </property>
@@ -2143,6 +2271,50 @@ background-color: rgb(0, 85, 0);</string>
       <string>Page</string>
      </attribute>
     </widget>
+   </widget>
+   <widget class="QLabel" name="lb_roll_3">
+    <property name="geometry">
+     <rect>
+      <x>1288</x>
+      <y>850</y>
+      <width>171</width>
+      <height>33</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>null</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_40">
+    <property name="geometry">
+     <rect>
+      <x>1110</x>
+      <y>850</y>
+      <width>171</width>
+      <height>33</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Roll</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>

@@ -470,6 +470,12 @@ class window(QtWidgets.QMainWindow):
                     if sr == 'posa':
                         val = data[d][sr]
                         self.lb_a.setText(str(val))
+                    if sr == 'posb':
+                        val = data[d][sr]
+                        self.lb_b.setText(str(val))
+                    if sr == 'posc':
+                        val = data[d][sr]
+                        self.lb_c.setText(str(val))
                     if sr == 'vel':
                         val = data[d][sr]
                         self.lb_vel.setText(str(val))
@@ -481,7 +487,9 @@ class window(QtWidgets.QMainWindow):
             y = float(self.lb_y.text())
             z = float(self.lb_z.text())
             a = float(self.lb_a.text())
-            j = [x, y, z, a]
+            b = float(self.lb_b.text())
+            # c = float(self.lb_c.text())
+            j = [x, y, z, a, b]
             T = R.fkine2(j)
             self.T = T
             rpy = tr2rpy(T, 'deg', 'xyz')
@@ -489,6 +497,8 @@ class window(QtWidgets.QMainWindow):
             self.lb_py.setText(str(round(T[1, 3], 5)))
             self.lb_pz.setText(str(round(T[2, 3], 5)))
             self.lb_roll.setText(str(round(rpy[0, 0], 5)))
+            self.lb_pitch.setText(str(round(rpy[0, 1], 5)))
+            self.lb_yam.setText(str(round(rpy[0, 2], 5)))
 
 class RunThread(QThread):
     sttRun = 0
