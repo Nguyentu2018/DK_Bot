@@ -357,15 +357,16 @@
        <number>1</number>
       </property>
       <property name="columnCount">
-       <number>6</number>
+       <number>7</number>
       </property>
       <attribute name="horizontalHeaderCascadingSectionResizes">
        <bool>false</bool>
       </attribute>
       <attribute name="horizontalHeaderDefaultSectionSize">
-       <number>113</number>
+       <number>100</number>
       </attribute>
       <row/>
+      <column/>
       <column/>
       <column/>
       <column/>
@@ -656,7 +657,7 @@
          <x>40</x>
          <y>50</y>
          <width>301</width>
-         <height>301</height>
+         <height>341</height>
         </rect>
        </property>
        <property name="title">
@@ -668,7 +669,7 @@
           <x>20</x>
           <y>40</y>
           <width>271</width>
-          <height>251</height>
+          <height>289</height>
          </rect>
         </property>
         <layout class="QGridLayout" name="gridLayout">
@@ -703,7 +704,7 @@
             </font>
            </property>
            <property name="text">
-            <string>Y (j1)</string>
+            <string>Y (j2)</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -731,7 +732,7 @@
             </font>
            </property>
            <property name="text">
-            <string>A (j3)</string>
+            <string>A (j4)</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -749,7 +750,7 @@
             </font>
            </property>
            <property name="text">
-            <string>X (j0)</string>
+            <string>X (j1)</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -767,7 +768,7 @@
             </font>
            </property>
            <property name="text">
-            <string>Z (j2)</string>
+            <string>Z (j3)</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -818,6 +819,82 @@
           <widget class="QPushButton" name="btn_A2">
            <property name="enabled">
             <bool>true</bool>
+           </property>
+           <property name="text">
+            <string>-</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QPushButton" name="btn_B1">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="text">
+            <string>+</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="2">
+          <widget class="QPushButton" name="btn_B2">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="text">
+            <string>-</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLabel" name="label_6">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>16</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>B (j5)</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="QPushButton" name="btn_C1">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>+</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QLabel" name="label_33">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>16</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>C (j6)</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="2">
+          <widget class="QPushButton" name="btn_C2">
+           <property name="enabled">
+            <bool>false</bool>
            </property>
            <property name="text">
             <string>-</string>
@@ -919,7 +996,7 @@
          <double>0.100000000000000</double>
         </property>
         <property name="value">
-         <double>50.000000000000000</double>
+         <double>10.000000000000000</double>
         </property>
        </widget>
        <widget class="QScrollBar" name="ScrollBar_Speed">
@@ -938,7 +1015,7 @@
          <number>100</number>
         </property>
         <property name="value">
-         <number>100</number>
+         <number>10</number>
         </property>
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -1002,7 +1079,7 @@
          <number>100</number>
         </property>
         <property name="value">
-         <number>100</number>
+         <number>10</number>
         </property>
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -1480,6 +1557,21 @@ p, li { white-space: pre-wrap; }
       <property name="rightMargin">
        <number>0</number>
       </property>
+      <item row="4" column="0">
+       <widget class="QLabel" name="label_10">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Z (j3)</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
       <item row="5" column="1">
        <widget class="QLabel" name="lb_a">
         <property name="font">
@@ -1522,7 +1614,7 @@ p, li { white-space: pre-wrap; }
          </font>
         </property>
         <property name="text">
-         <string>B (j4)</string>
+         <string>B (j5)</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -1537,7 +1629,7 @@ p, li { white-space: pre-wrap; }
          </font>
         </property>
         <property name="text">
-         <string>A (j3)</string>
+         <string>A (j4)</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -1552,7 +1644,7 @@ p, li { white-space: pre-wrap; }
          </font>
         </property>
         <property name="text">
-         <string>Y (j1)</string>
+         <string>Y (j2)</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -1567,7 +1659,7 @@ p, li { white-space: pre-wrap; }
          </font>
         </property>
         <property name="text">
-         <string>X (j0)</string>
+         <string>X (j1)</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -1608,21 +1700,6 @@ p, li { white-space: pre-wrap; }
         </property>
        </widget>
       </item>
-      <item row="4" column="0">
-       <widget class="QLabel" name="label_10">
-        <property name="font">
-         <font>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>Z (j2)</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
       <item row="4" column="1">
        <widget class="QLabel" name="lb_z">
         <property name="font">
@@ -1642,13 +1719,16 @@ p, li { white-space: pre-wrap; }
       </item>
       <item row="7" column="0">
        <widget class="QLabel" name="label_32">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
         <property name="font">
          <font>
           <pointsize>10</pointsize>
          </font>
         </property>
         <property name="text">
-         <string>C (j5)</string>
+         <string>C (j6)</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -1657,6 +1737,9 @@ p, li { white-space: pre-wrap; }
       </item>
       <item row="7" column="1">
        <widget class="QLabel" name="lb_c">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
         <property name="font">
          <font>
           <pointsize>10</pointsize>
@@ -1666,6 +1749,23 @@ p, li { white-space: pre-wrap; }
         </property>
         <property name="text">
          <string>null</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="1">
+       <widget class="QLabel" name="lb_b_2">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>0.0</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -2167,7 +2267,7 @@ color: rgb(255, 255, 255);</string>
      </widget>
      <widget class="QPushButton" name="btn_HomeAll">
       <property name="enabled">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
       <property name="geometry">
        <rect>
@@ -2260,6 +2360,22 @@ background-color: rgb(0, 85, 0);</string>
        </rect>
       </property>
      </widget>
+     <widget class="QPushButton" name="btn_Ready">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>620</x>
+        <y>300</y>
+        <width>121</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Ready</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_6">
      <attribute name="title">
@@ -2316,6 +2432,30 @@ background-color: rgb(0, 85, 0);</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>1510</x>
+      <y>840</y>
+      <width>69</width>
+      <height>42</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>A (j3)</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
@@ -2360,12 +2500,12 @@ background-color: rgb(0, 85, 0);</string>
    <slot>click()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1129</x>
-     <y>454</y>
+     <x>929</x>
+     <y>440</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1229</x>
-     <y>434</y>
+     <x>929</x>
+     <y>440</y>
     </hint>
    </hints>
   </connection>
@@ -2434,70 +2574,6 @@ background-color: rgb(0, 85, 0);</string>
    </hints>
   </connection>
   <connection>
-   <sender>btn_PZ1</sender>
-   <signal>clicked()</signal>
-   <receiver>btn_Z2</receiver>
-   <slot>click()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>1355</x>
-     <y>296</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>1119</x>
-     <y>301</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>btn_PZ2</sender>
-   <signal>clicked()</signal>
-   <receiver>btn_Z1</receiver>
-   <slot>click()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>1538</x>
-     <y>296</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>936</x>
-     <y>301</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>btn_ROLL1</sender>
-   <signal>clicked()</signal>
-   <receiver>btn_A1</receiver>
-   <slot>click()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>1355</x>
-     <y>356</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>936</x>
-     <y>359</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>btn_ROLL2</sender>
-   <signal>clicked()</signal>
-   <receiver>btn_A2</receiver>
-   <slot>click()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>1538</x>
-     <y>356</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>1119</x>
-     <y>359</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>cbb_Program</sender>
    <signal>activated(QString)</signal>
    <receiver>btn_Load</receiver>
@@ -2510,6 +2586,38 @@ background-color: rgb(0, 85, 0);</string>
     <hint type="destinationlabel">
      <x>1503</x>
      <y>69</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btn_ROLL1</sender>
+   <signal>clicked()</signal>
+   <receiver>btn_B1</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1308</x>
+     <y>364</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>922</x>
+     <y>368</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btn_ROLL2</sender>
+   <signal>clicked()</signal>
+   <receiver>btn_B2</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1493</x>
+     <y>355</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1093</x>
+     <y>370</y>
     </hint>
    </hints>
   </connection>

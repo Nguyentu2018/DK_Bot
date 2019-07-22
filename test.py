@@ -11,20 +11,19 @@ def Run(name):
     error = False
     while i < len(data) and not error:
         #neu mode la p thi di chuyen theo diem
-        if data[i][4] == 'P':
-            #gcode.append("#" * 20 + " Position " + "#" * 20)
+        if data[i][5] == 'P':
+            # gcode.append("#" * 20 + " Position " + "#" * 20)
             row = list(data[i])
             # xoa mode
-            row.remove(row[4])
+            row.remove(row[5])
             # xoa vel
-            row.remove(row[4])
+            row.remove(row[5])
             # tinh dong hoc nghich
-            j, error = R.ikine(row, [1, 0])
+            j = row
             # neu khong co loi
-            if error == 0:
-                cmd = 'G0X' + str(round(j[0], 4)) + ' Y' + str(round(j[1], 4)) + ' Z' + str(round(j[2], 4)) \
-                      + ' A' + str(round(j[3], 4)) + ' F' + str(data[i][5]*200)
-                gcode.append(cmd)
+            cmd = 'G1x' + str(round(j[0], 4)) + 'y' + str(round(j[1], 4)) + 'z' + str(round(j[2], 4)) \
+                  + 'a' + str(round(j[3], 4)) + 'b' + str(round(j[4] + 90 - j[3], 4)) + 'f' + str(data[i][6] * 200)
+            gcode.append(cmd)
 
         if data[i][4] == 'L':
             #gcode.append("#" * 20 + " Line " + "#" * 20)
@@ -126,22 +125,21 @@ def RunStep(name, i):
     gcode = ['G90']
     error = False
     #neu mode la p thi di chuyen theo diem
-    if data[i][4] == 'P':
+    if data[i][5] == 'P':
         #gcode.append("#" * 20 + " Position " + "#" * 20)
         row = list(data[i])
         # xoa mode
-        row.remove(row[4])
+        row.remove(row[5])
         # xoa vel
-        row.remove(row[4])
+        row.remove(row[5])
         # tinh dong hoc nghich
-        j, error = R.ikine(row, [1, 0])
+        j = row
         # neu khong co loi
-        if error == 0:
-            cmd = 'G0X' + str(round(j[0], 4)) + ' Y' + str(round(j[1], 4)) + ' Z' + str(round(j[2], 4)) \
-                  + ' A' + str(round(j[3], 4)) + ' F' + str(data[i][5]*200)
-            gcode.append(cmd)
+        cmd = 'G1x' + str(round(j[0], 4)) + 'y' + str(round(j[1], 4)) + 'z' + str(round(j[2], 4)) \
+              + 'a' + str(round(j[3], 4)) + 'b' + str(round(j[4] + 90 - j[3], 4)) + 'f' + str(data[i][6]*200)
+        gcode.append(cmd)
 
-    if data[i][4] == 'L':
+    if data[i][5] == 'L':
         #gcode.append("#" * 20 + " Line " + "#" * 20)
         p1 = list(data[i])
         p1.remove(p1[4])

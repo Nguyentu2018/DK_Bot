@@ -6,16 +6,17 @@ c = conn.cursor()
 # tao mot table moi neu no chua co trong data
 def create_table(name):
     c.execute("""CREATE TABLE IF NOT EXISTS """ + name + """(
-                px REAL,
-                py REAL,
-                pz REAL,
-                roll REAL,
-                mode TEXT,
-                vel REAL)""")
+                X REAL,
+                Y REAL,
+                Z REAL,
+                A REAL,
+                B REAL,
+                MODE TEXT,
+                VEL REAL)""")
 
 # nhap lieu vao table trong data
 def data_entry(name, data):
-    c.execute('INSERT INTO ' + name + ' VALUES(?, ?, ?, ?, ?, ?)',
+    c.execute('INSERT INTO ' + name + ' VALUES(?, ?, ?, ?, ?, ?, ?)',
               (data))
     # save
     # conn.commit()
