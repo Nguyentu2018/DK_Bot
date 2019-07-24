@@ -58,8 +58,10 @@ def ikine(position, qlast, otp):
         j[0] = - atan2(-ty, tx) + atan2(-55.0, -sqrt(tx**2+ty**2-3025.0).real)
     else:
         j[0] = - atan2(-ty, tx) + atan2(-55.0, sqrt(tx**2+ty**2-3025.0).real)
-    # if j[0] > pi/2 or j[0] < -pi/2:
-    #     j[0] = 2*pi + j[0]
+    if j[0] > 135*pi/180:
+        j[0] = j[0] - 2*pi
+    if j[0] < -135*pi/180:
+        j[0] = j[0] + 2*pi
     C1 = cos(j[0])
     S1 = sin(j[0])
     if otp[1] == 1:
@@ -67,9 +69,9 @@ def ikine(position, qlast, otp):
     else:
         j[1] = atan2(tz*6.0e2-ty**2-tz**2-C1**2*tx**2+C1**2*ty**2-C1*S1*tx*ty*2.0-9.0e4, (sqrt(tz*-4.2e7-ty**2*tz**2*2.0+ty**2*tz*1.2e3-ty**2*1.8e5-ty**4-tz**2*2.9e5+tz**3*1.2e3-tz**4+C1**2*tx**2*7.0e4-C1**4*tx**4+C1**2*ty**2*6.8e5+C1**2*ty**4*2.0-C1**4*ty**2*7.5e5-C1**4*ty**4+C1**6*ty**2*2.5e5+S1**6*ty**2*2.5e5+C1**2*tx**2*tz*1.2e3-C1**2*ty**2*tz*1.2e3-C1**2*tx**2*ty**2*6.0+C1**4*tx**2*ty**2*6.0-C1**2*tx**2*tz**2*2.0+C1**2*ty**2*tz**2*2.0-C1*S1*tx*ty**3*4.0+C1*S1**3*tx*ty*5.0e5+C1**3*S1*tx*ty*5.0e5+C1**3*S1*tx*ty**3*4.0-C1**3*S1*tx**3*ty*4.0-C1*S1*tx*ty*3.6e5+C1*S1*tx*ty*tz*2.4e3-C1*S1*tx*ty*tz**2*4.0+1.44e10)).real)-atan2(C1*tx*-5.0e2-S1**3*ty*5.0e2-C1**2*S1*ty*5.0e2, tz*-5.0e2+1.5e5)
     if j[1]<-45*pi/180:
-        j[1] =  j[1] + 360*pi/180
+        j[1] =  j[1] + 2*pi
     if j[1]>225*pi/180:
-        j[1] =  j[1] - 360*pi/180
+        j[1] =  j[1] - 2*pi
     C2 = cos(j[1])
     S2 = sin(j[1])
 
@@ -124,8 +126,8 @@ def checkLimit(joint, position):
 # rad = pi/180
 # vl = [0, 120*rad, 120*rad, 120*rad, pi/4]
 # a, limit = ikine([-240.0, 55.0, 300.0], vl, [1, 1, 0])
-# b = fkine2(a)
+# b = fkine([0, 0, 0,0,0])
 # rpy = tr2rpy(b, 'deg', 'xyz')
-# print(a)
+# print(b)
 # print(rpy)
 # print(b, limit)

@@ -2,7 +2,7 @@ import Program as pg
 import R
 import numpy as np
 from sympy import Eq, linsolve, symbols
-from math import sqrt
+from math import sqrt, pi
 
 def Run(name):
     data = pg.read_from_db(name)
@@ -25,57 +25,64 @@ def Run(name):
                   + 'a' + str(round(j[3], 4)) + 'b' + str(round(j[4] + 90 - j[3], 4)) + 'f' + str(data[i][6] * 200)
             gcode.append(cmd)
 
-        if data[i][4] == 'L':
+        if data[i][5] == 'L':
             #gcode.append("#" * 20 + " Line " + "#" * 20)
             p1 = list(data[i])
-            p1.remove(p1[4])
-            p1.remove(p1[4])
+            p1.remove(p1[5])
+            p1.remove(p1[5])
+            rad = pi/180
+            j1 = [p1[0]*rad, p1[1]*rad, p1[2]*rad, p1[3]*rad, p1[4]*rad]
 
             p2 = list(data[i+1])
-            p2.remove(p2[4])
-            p2.remove(p2[4])
+            p2.remove(p2[5])
+            p2.remove(p2[5])
+
+            pos1 = R.fkine(p1)
+            pos2 = R.fkine(p2)
             i = i + 1
-            n = 99
-            step = np.linspace(p1, p2, n)
+            n = 1000
+            step = np.linspace(pos1, pos2, n)
             step1 = step.tolist()
             for a in range(n):
-                j, error = R.ikine(step1[a], [1, 0])
+                j, error = R.ikine(step1[a], j1, [1, 1, 0])
                 # neu khong co loi
                 if error == 0:
-                    cmd = 'G0X' + str(round(j[0], 4)) + ' Y' + str(round(j[1], 4)) + ' Z' + str(round(j[2], 4)) \
-                          + ' A' + str(round(j[3], 4)) + ' F' + str(data[i][5]*200)
+                    cmd = 'G1x' + str(round(j[0], 4)) + 'y' + str(round(j[1], 4)) + 'z' + str(round(j[2], 4)) \
+                          + 'a' + str(round(j[3], 4)) + 'b' + str(round(j[4] + 90 - j[3], 4)) + 'f' + str(
+                        data[i-1][6] * 200)
                     gcode.append(cmd)
                 else:
                     print("error in " + str(a))
                     break
 
-        if data[i][4] == 'C':
+        if data[i][5] == 'C':
             #gcode.append("#"*20 +" Cricle "+ "#"*20)
             p1 = list(data[i])
-            bk = p1[5]
+            bk = p1[6]
             p1.remove(p1[5])
-            p1.remove(p1[4])
-
+            p1.remove(p1[5])
+            pos1 = R.fkine(p1)
             n = 100
             step = np.linspace(0, 2*np.pi, n)
             x = []
             y = []
             for t in step:
-                px = bk * np.cos(t) + p1[0]
+                px = bk * np.cos(t) + pos1[0]
                 x.append(float(px))
             for t in step:
-                py = bk * np.sin(t) + p1[1]
+                py = bk * np.sin(t) + pos1[1]
                 y.append(float(py))
             for a in range(n):
-                pos = [x[a], y[a], p1[2], p1[3]]
-                j, error = R.ikine(pos, [1, 0])
+                pos = [x[a], y[a], pos1[2]]
+                j, error = R.ikine(pos, p1, [1, 1, 0])
                 # neu khong co loi
                 if error == 0:
-                    cmd = 'G0X' + str(round(j[0], 4)) + ' Y' + str(round(j[1], 4)) + ' Z' + str(round(j[2], 4)) \
-                          + ' A' + str(round(j[3], 4)) + ' F' + str(data[i][5]*200)
+                    cmd = 'G1x' + str(round(j[0], 4)) + 'y' + str(round(j[1], 4)) + 'z' + str(round(j[2], 4)) \
+                          + 'a' + str(round(j[3], 4)) + 'b' + str(round(j[4] + 90 - j[3], 4)) + 'f' + str(
+                        data[i - 1][6] * 200)
                     gcode.append(cmd)
                 else:
-                    print("error in " + str(i))
+                    print("error in " + str(a))
                     break
         if data[i][4] == 'C2':
             p1 = list(data[i])
@@ -140,24 +147,30 @@ def RunStep(name, i):
         gcode.append(cmd)
 
     if data[i][5] == 'L':
-        #gcode.append("#" * 20 + " Line " + "#" * 20)
+        # gcode.append("#" * 20 + " Line " + "#" * 20)
         p1 = list(data[i])
-        p1.remove(p1[4])
-        p1.remove(p1[4])
+        p1.remove(p1[5])
+        p1.remove(p1[5])
+        rad = pi / 180
+        j1 = [p1[0] * rad, p1[1] * rad, p1[2] * rad, p1[3] * rad, p1[4] * rad]
 
-        p2 = list(data[i+1])
-        p2.remove(p2[4])
-        p2.remove(p2[4])
+        p2 = list(data[i + 1])
+        p2.remove(p2[5])
+        p2.remove(p2[5])
+
+        pos1 = R.fkine(p1)
+        pos2 = R.fkine(p2)
         i = i + 1
         n = 99
-        step = np.linspace(p1, p2, n)
+        step = np.linspace(pos1, pos2, n)
         step1 = step.tolist()
         for a in range(n):
-            j, error = R.ikine(step1[a], [1, 0])
+            j, error = R.ikine(step1[a], j1, [1, 1, 0])
             # neu khong co loi
             if error == 0:
-                cmd = 'G0X' + str(round(j[0], 4)) + ' Y' + str(round(j[1], 4)) + ' Z' + str(round(j[2], 4)) \
-                      + ' A' + str(round(j[3], 4)) + ' F' + str(data[i][5]*200)
+                cmd = 'G1x' + str(round(j[0], 4)) + 'y' + str(round(j[1], 4)) + 'z' + str(round(j[2], 4)) \
+                      + 'a' + str(round(j[3], 4)) + 'b' + str(round(j[4] + 90 - j[3], 4)) + 'f' + str(
+                    data[i - 1][6] * 200)
                 gcode.append(cmd)
             else:
                 print("error in " + str(a))

@@ -93,6 +93,7 @@ class window(QtWidgets.QMainWindow):
         self.btn_HomeAll.clicked.connect(self.btnHomeAll)
         self.btn_Ready.clicked.connect(self.btnReady)
         self.SpinBox_Step_Run.valueChanged.connect(self.StepRun)
+        # self.cbb_Program.currentTextChanged.connect(self.cbbProgram)
 
         self.btn_X1.pressed.connect(self.btnX1JogPressed)
         self.btn_X2.pressed.connect(self.btnX2JogPressed)
@@ -168,6 +169,8 @@ class window(QtWidgets.QMainWindow):
         self.table.selectRow(0)
 
         self.show()
+    def cbbProgram(self):
+        self.SpinBox_Step_Run.setValue(0)
     def JogPressed(self, joint):
         vel = str(self.Speed)
         if joint == "X1":
@@ -629,7 +632,7 @@ class window(QtWidgets.QMainWindow):
             y = float(self.lb_y.text())
             z = float(self.lb_z.text())
             a = float(self.lb_a.text())
-            b = float(self.lb_b_2.text())
+            b = float(self.lb_b.text())
             # c = float(self.lb_c.text())
             j = [x, y, z, a, b]
             T = R.fkine2(j)
